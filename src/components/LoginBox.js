@@ -12,9 +12,6 @@ function LoginBox() {
       <InputBox>
         <IdInput placeholder="아이디"></IdInput>
         <PwdInput placeholder="비밀번호"></PwdInput>
-        <SginUpBox>
-          <SiunUpText>회원가입</SiunUpText>
-        </SginUpBox>
       </InputBox>
       <BtnBox>
         <LoginBtn
@@ -25,6 +22,7 @@ function LoginBox() {
           <BtnText>로그인</BtnText>
         </LoginBtn>
       </BtnBox>
+      <BottomText>@Mobicom</BottomText>
     </LoginBoxcontainer>
   );
 }
@@ -32,8 +30,8 @@ function LoginBox() {
 export default LoginBox;
 
 const LoginBoxcontainer = styled.div`
-  width: 20%;
-  height: 40%;
+  width: 40rem;
+  height: 40rem;
   display: flex;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -54,14 +52,14 @@ const TitleBox = styled.div`
 
 const NameText = styled.h5`
   font-weight: 500;
-  font-size: 30px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  font-size: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const TitleText = styled.h2`
   font-weight: 700;
-  font-size: 40px;
+  font-size: 4rem;
 `;
 
 const InputBox = styled.div`
@@ -77,7 +75,7 @@ const IdInput = styled.input`
   width: 80%;
   height: 25%;
   border-radius: 6px;
-  border-width: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   margin-bottom: 20px;
 `;
 
@@ -85,19 +83,13 @@ const PwdInput = styled.input`
   width: 80%;
   height: 25%;
   border-radius: 6px;
-  border-width: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 `;
 
-const SginUpBox = styled.div`
-  width: 80%;
-  height: 30%;
-  text-align: right;
-`;
-
-const SiunUpText = styled.p`
-  font-size: 15px;
-  margin-top: 20px;
+const BottomText = styled.p`
+  font-size: 1.5rem;
   opacity: 0.7;
+  margin-bottom: 2rem;
 `;
 
 const BtnBox = styled.div`

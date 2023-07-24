@@ -1,21 +1,24 @@
 import styled, { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 
 function App() {
   return (
-    <AppContainer>
-      <GlobalStyle />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" replace={true} />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/main" element={<MainPage />} />
-        </Routes>
-      </Router>
-    </AppContainer>
+    <RecoilRoot>
+      <AppContainer>
+        <GlobalStyle />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" replace={true} />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/main" element={<MainPage />} />
+          </Routes>
+        </Router>
+      </AppContainer>
+    </RecoilRoot>
   );
 }
 
