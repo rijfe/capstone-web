@@ -21,6 +21,9 @@ function MainHeader() {
       <ListBtn onClick={ListBtnClick}>
         <BtnText>명단</BtnText>
       </ListBtn>
+      <UserTextContainer>
+        <UserText>홍길동님 환영합니다.</UserText>
+      </UserTextContainer>
     </MainHeaderContainer>
   );
 }
@@ -57,7 +60,7 @@ const MapBtn = styled.div`
 `;
 
 const BtnText = styled.h2`
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 500;
 `;
 
@@ -70,4 +73,17 @@ const ListBtn = styled.div`
   border-right-style: solid;
   border-right-width: 0.1rem;
   border-color: rgb(0, 0, 0, 0.3);
+`;
+
+const UserTextContainer = styled.div`
+  display: flex;
+  flex: 1;
+  height: 100%;
+  align-items: center;
+  justify-content: end;
+`;
+
+const UserText = styled.h5`
+  font-size: 2rem;
+  font-weight: 300;
 `;

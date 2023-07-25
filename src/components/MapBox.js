@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
 import { useEffect } from "react";
+import markersrc from "../Image/warning.png";
+import InfoWindowBox from "./InfoWindowBox";
 
 function MapBox({ num1, num2 }) {
-  const { kakao } = window;
-
   useEffect(() => {
     const mapScript = document.createElement("script");
     mapScript.async = true;
@@ -14,14 +14,47 @@ function MapBox({ num1, num2 }) {
       window.kakao.maps.load(() => {
         const container = document.getElementById("kakaoMap");
         const options = {
-          center: new kakao.maps.LatLng(num1, num2),
+          center: new window.kakao.maps.LatLng(num1, num2),
         };
-        const map = new kakao.maps.Map(container, options);
-        const markerPosition = new window.kakao.maps.LatLng(36.35183725966683, 127.3014373219504);
+        const map = new window.kakao.maps.Map(container, options);
+
+        const imgSrc = markersrc;
+        const imgSize = new window.kakao.maps.Size(32, 32);
+        const imgOption = { offset: new window.kakao.maps.Point(10, 10) };
+        const markerImg = new window.kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
+        const markerPosition = new window.kakao.maps.LatLng(num1, num2);
         const marker = new window.kakao.maps.Marker({
           position: markerPosition,
+          image: markerImg,
         });
         marker.setMap(map);
+
+        const date = new Date();
+
+        const year = date.getFullYear();
+        const month = ("0" + (date.getMonth() + 1)).slice(-2);
+        const day = ("0" + date.getDate()).slice(-2);
+        const dateStr = year + "." + month + "." + day;
+
+        const hours = ("0" + date.getHours()).slice(-2);
+        const minutes = ("0" + date.getMinutes()).slice(-2);
+        const seconds = ("0" + date.getSeconds()).slice(-2);
+        const timeStr = hours + ":" + minutes + ":" + seconds;
+
+        const iwContent = `<div style="width:10rem; height:5rem; display:flex; flex-direction: column"><p style="font-size:1.5rem;">차간 주행</p><p style="font-size:1rem;">${
+          dateStr + " " + timeStr
+        }</p></div>`;
+        const iwPosition = new window.kakao.maps.LatLng(num1, num2);
+
+        const infoWindow = new window.kakao.maps.InfoWindow({
+          position: iwPosition,
+          content: iwContent,
+          removable: true,
+        });
+
+        window.kakao.maps.event.addListener(marker, "click", function () {
+          infoWindow.open(map, marker);
+        });
       });
     };
     mapScript.addEventListener("load", onLoadKakaoMap);
