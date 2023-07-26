@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 import { useEffect } from "react";
 import markersrc from "../Image/warning.png";
-import InfoWindowBox from "./InfoWindowBox";
 
 function MapBox({ num1, num2 }) {
   useEffect(() => {
