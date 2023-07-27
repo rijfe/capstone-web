@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import ListHeader from "./ListHeader";
 import ListBody from "./ListBody";
+import ListPaginationBox from "./ListPaginationBox";
 
 function ListBox() {
   const dummy = [
@@ -84,6 +85,7 @@ function ListBox() {
           return <ListBody name={e.name} grade={e.grade} email={e.email} amount={e.amount} time={e.time} />;
         })}
       </ListContainer>
+      <ListPaginationBox></ListPaginationBox>
     </ListBoxContainer>
   );
 }
@@ -96,6 +98,7 @@ const ListBoxContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 const ListContainer = styled.div`
