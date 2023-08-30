@@ -4,6 +4,28 @@ import ListBody from "./ListBody";
 import ListPaginationBox from "./ListPaginationBox";
 
 function ListBox() {
+  const testBtnClick = async () => {
+    await fetch("/list", {
+      method: "GET",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((result) => {
+      // console.log(result);
+      result.json().then((re) => {
+        console.log(re);
+      });
+      // let data = result.json();
+      // data.then((re) => {
+      //   console.log(re);
+      // });
+    });
+    // .catch((err) => {
+    //   console.log(err);
+    // });
+  };
+
   const dummy = [
     {
       name: "홍길동",
@@ -79,6 +101,7 @@ function ListBox() {
 
   return (
     <ListBoxContainer>
+      <button onClick={testBtnClick}>test</button>
       <ListContainer>
         <ListHeader />
         {dummy.map((e) => {
@@ -107,3 +130,9 @@ const ListContainer = styled.div`
   border-radius: 0.6rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
 `;
+
+// const TestBtn = styled.div`
+//   width: 100px;
+//   height: 100px;
+//   border: 1px solid rgba(0, 0, 0, 0.2);
+// `;

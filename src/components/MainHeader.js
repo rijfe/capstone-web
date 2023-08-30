@@ -2,9 +2,8 @@ import { styled } from "styled-components";
 import { useRecoilState } from "recoil";
 import { bodyState } from "../store/bodyState";
 
-function MainHeader() {
+function MainHeader({}) {
   const [body, setBody] = useRecoilState(bodyState);
-
   const MapBtnClick = () => {
     setBody(true);
   };

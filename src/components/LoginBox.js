@@ -3,6 +3,26 @@ import { useNavigate } from "react-router-dom";
 
 function LoginBox() {
   const navigate = useNavigate();
+  const LoginBtnClick = () => {
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "sujin1234@naver.com",
+        password: "123",
+      }),
+    }).then((result) => {
+      // result.json().then((re) => {
+      //   console.log(re);
+      // });
+      console.log(result);
+      if (result.status === 200) {
+        navigate("/main");
+      }
+    });
+  };
   return (
     <LoginBoxcontainer>
       <TitleBox>
@@ -16,7 +36,8 @@ function LoginBox() {
       <BtnBox>
         <LoginBtn
           onClick={() => {
-            navigate("/main");
+            // navigate("/main");
+            LoginBtnClick();
           }}
         >
           <BtnText>로그인</BtnText>
