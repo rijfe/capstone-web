@@ -1,114 +1,245 @@
 import { styled } from "styled-components";
+import { useEffect, useState } from "react";
 import ListHeader from "./ListHeader";
 import ListBody from "./ListBody";
 import ListPaginationBox from "./ListPaginationBox";
 
 function ListBox() {
-  const testBtnClick = async () => {
-    await fetch("/list", {
-      method: "GET",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((result) => {
-      // console.log(result);
-      result.json().then((re) => {
-        console.log(re);
-      });
-      // let data = result.json();
-      // data.then((re) => {
-      //   console.log(re);
-      // });
-    });
-    // .catch((err) => {
-    //   console.log(err);
-    // });
-  };
-
-  const dummy = [
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+  const data = [
     {
-      name: "홍길동",
-      grade: 1,
-      email: "test1@test.com",
-      amount: 2,
-      time: "2023.07.26",
+      id: 1,
+      email: "test@1.com",
+      amount: 3,
+      time: "2023.08.05",
     },
     {
-      name: "아무개",
-      grade: 3,
-      email: "test2@test.com",
-      amount: 12,
-      time: "2023.02.26",
+      id: 2,
+      email: "test@2.com",
+      amount: 31,
+      time: "2023.08.05",
     },
     {
-      name: "김철수",
-      grade: 2,
-      email: "test3@test.com",
+      id: 3,
+      email: "test@3.com",
       amount: 6,
-      time: "2023.05.11",
+      time: "2023.08.05",
     },
     {
-      name: "박진수",
-      grade: 5,
-      email: "test4@test.com",
-      amount: 20,
-      time: "2023.01.20",
-    },
-    {
-      name: "신형만",
-      grade: 1,
-      email: "test5@test.com",
-      amount: 0,
-      time: "2023.02.10",
-    },
-    {
-      name: "홍길동",
-      grade: 1,
-      email: "test1@test.com",
-      amount: 2,
-      time: "2023.07.26",
-    },
-    {
-      name: "아무개",
-      grade: 3,
-      email: "test2@test.com",
+      id: 4,
+      email: "test@4.com",
       amount: 12,
-      time: "2023.02.26",
+      time: "2023.08.05",
     },
     {
-      name: "김철수",
-      grade: 2,
-      email: "test3@test.com",
+      id: 5,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
+    },
+    {
+      id: 6,
+      email: "test@1.com",
+      amount: 3,
+      time: "2023.08.05",
+    },
+    {
+      id: 7,
+      email: "test@2.com",
+      amount: 31,
+      time: "2023.08.05",
+    },
+    {
+      id: 8,
+      email: "test@3.com",
       amount: 6,
-      time: "2023.05.11",
+      time: "2023.08.05",
     },
     {
-      name: "박진수",
-      grade: 5,
-      email: "test4@test.com",
-      amount: 20,
-      time: "2023.01.20",
+      id: 9,
+      email: "test@4.com",
+      amount: 12,
+      time: "2023.08.05",
     },
     {
-      name: "신형만",
-      grade: 1,
-      email: "test5@test.com",
-      amount: 0,
-      time: "2023.02.10",
+      id: 10,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
+    },
+    {
+      id: 11,
+      email: "test@1.com",
+      amount: 3,
+      time: "2023.08.05",
+    },
+    {
+      id: 12,
+      email: "test@2.com",
+      amount: 31,
+      time: "2023.08.05",
+    },
+    {
+      id: 13,
+      email: "test@3.com",
+      amount: 6,
+      time: "2023.08.05",
+    },
+    {
+      id: 14,
+      email: "test@4.com",
+      amount: 12,
+      time: "2023.08.05",
+    },
+    {
+      id: 15,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
+    },
+    {
+      id: 10,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
+    },
+    {
+      id: 11,
+      email: "test@1.com",
+      amount: 3,
+      time: "2023.08.05",
+    },
+    {
+      id: 12,
+      email: "test@2.com",
+      amount: 31,
+      time: "2023.08.05",
+    },
+    {
+      id: 13,
+      email: "test@3.com",
+      amount: 6,
+      time: "2023.08.05",
+    },
+    {
+      id: 14,
+      email: "test@4.com",
+      amount: 12,
+      time: "2023.08.05",
+    },
+    {
+      id: 15,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
+    },
+    {
+      id: 10,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
+    },
+    {
+      id: 11,
+      email: "test@1.com",
+      amount: 3,
+      time: "2023.08.05",
+    },
+    {
+      id: 12,
+      email: "test@2.com",
+      amount: 31,
+      time: "2023.08.05",
+    },
+    {
+      id: 13,
+      email: "test@3.com",
+      amount: 6,
+      time: "2023.08.05",
+    },
+    {
+      id: 14,
+      email: "test@4.com",
+      amount: 12,
+      time: "2023.08.05",
+    },
+    {
+      id: 15,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
+    },
+    {
+      id: 10,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
+    },
+    {
+      id: 11,
+      email: "test@1.com",
+      amount: 3,
+      time: "2023.08.05",
+    },
+    {
+      id: 12,
+      email: "test@2.com",
+      amount: 31,
+      time: "2023.08.05",
+    },
+    {
+      id: 13,
+      email: "test@3.com",
+      amount: 6,
+      time: "2023.08.05",
+    },
+    {
+      id: 14,
+      email: "test@4.com",
+      amount: 12,
+      time: "2023.08.05",
+    },
+    {
+      id: 15,
+      email: "test@5.com",
+      amount: 23,
+      time: "2023.08.05",
     },
   ];
+  // const [loading, setLoading] = useState(false);
+  // const getData = async () => {
+  //   await fetch("/list", {
+  //     method: "GET",
+  //     mode: "no-cors",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   }).then((result) => {
+  //     result.json().then((response) => {
+  //       for (let d of response) {
+  //         data.push({ id: d.id, email: d.email, time: d.localDateTime, amount: d.dataCount });
+  //       }
+  //       console.log(data);
+  //       setLoading(true);
+  //     });
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <ListBoxContainer>
-      <button onClick={testBtnClick}>test</button>
       <ListContainer>
         <ListHeader />
-        {dummy.map((e) => {
-          return <ListBody name={e.name} grade={e.grade} email={e.email} amount={e.amount} time={e.time} />;
+        {data.slice(offset, offset + limit).map((e) => {
+          return <ListBody id={e.id} email={e.email} amount={e.amount} time={e.time} />;
         })}
       </ListContainer>
-      <ListPaginationBox></ListPaginationBox>
+      <ListPaginationBox total={data.length} limit={limit} page={page} setPage={setPage}></ListPaginationBox>
     </ListBoxContainer>
   );
 }

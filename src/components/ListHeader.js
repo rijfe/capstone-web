@@ -4,10 +4,7 @@ function ListHeader() {
   return (
     <ListHeaderContainer>
       <ListTitleContainer>
-        <ListTitleText>이름</ListTitleText>
-      </ListTitleContainer>
-      <ListTitleContainer>
-        <ListTitleText>등급</ListTitleText>
+        <ListTitleText>ID</ListTitleText>
       </ListTitleContainer>
       <ListTitleContainer>
         <ListTitleText>Email</ListTitleText>
@@ -33,7 +30,7 @@ const ListHeaderContainer = styled.div`
 `;
 
 const ListTitleContainer = styled.div`
-  width: 20%;
+  width: 25%;
   height: 100%;
   display: flex;
   justify-content: center;

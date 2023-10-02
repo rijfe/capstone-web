@@ -1,13 +1,10 @@
 import { styled } from "styled-components";
 
-function ListBody({ name, grade, email, amount, time }) {
+function ListBody({ id, email, amount, time }) {
   return (
     <ListBodyContainer>
       <ListContentContainer>
-        <ListContentText>{name}</ListContentText>
-      </ListContentContainer>
-      <ListContentContainer>
-        <ListContentText>{grade}</ListContentText>
+        <ListContentText>{id}</ListContentText>
       </ListContentContainer>
       <ListContentContainer>
         <ListContentText>{email}</ListContentText>
@@ -33,7 +30,7 @@ const ListBodyContainer = styled.div`
 `;
 
 const ListContentContainer = styled.div`
-  width: 20%;
+  width: 25%;
   height: 100%;
   display: flex;
   justify-content: center;
