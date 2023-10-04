@@ -6,6 +6,7 @@ import ListBox from "./ListBox";
 
 function MainBody() {
   const state = useRecoilValue(getBodyState);
+
   return <MainBodyContainer>{state ? <MapBox num1={36.35183725966683} num2={127.3014373219504} /> : <ListBox />}</MainBodyContainer>;
 }
 
