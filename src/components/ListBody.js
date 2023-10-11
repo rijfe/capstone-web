@@ -1,10 +1,17 @@
 import { styled } from "styled-components";
 
-function ListBody({ id, email, amount, time }) {
+function ListBody({ id, email, amount, time, rank }) {
   return (
-    <ListBodyContainer>
+    <ListBodyContainer
+      onClick={() => {
+        console.log(`${email} is click`);
+      }}
+    >
       <ListContentContainer>
         <ListContentText>{id}</ListContentText>
+      </ListContentContainer>
+      <ListContentContainer>
+        <ListContentText style={{ color: rank === "초록" ? "green" : rank === "노랑" ? "gold" : "red" }}>{rank}</ListContentText>
       </ListContentContainer>
       <ListContentContainer>
         <ListContentText>{email}</ListContentText>
@@ -27,10 +34,14 @@ const ListBodyContainer = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: row;
+
+  &:hover {
+    background-color: #dcdcdc;
+  }
 `;
 
 const ListContentContainer = styled.div`
-  width: 25%;
+  width: 20%;
   height: 100%;
   display: flex;
   justify-content: center;

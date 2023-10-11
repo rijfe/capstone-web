@@ -19,6 +19,7 @@ function ListBox() {
       },
     }).then((result) => {
       result.json().then((response) => {
+        console.log(response);
         setData(response);
       });
     });
@@ -33,7 +34,7 @@ function ListBox() {
       <ListContainer>
         <ListHeader />
         {data.slice(offset, offset + limit).map((e) => {
-          return <ListBody id={e.id} email={e.email} amount={e.dataCount} time={e.localDateTime} />;
+          return <ListBody id={e.id} email={e.email} amount={e.TotalDataCount} time={e.localDateTime} rank={e.rank} />;
         })}
       </ListContainer>
       <ListPaginationBox total={data.length} limit={limit} page={page} setPage={setPage}></ListPaginationBox>

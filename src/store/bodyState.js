@@ -2,7 +2,7 @@ import { atom, selector } from "recoil";
 
 const bodyState = atom({
   key: "bodyState",
-  default: true,
+  default: false,
 });
 
 const getBodyState = selector({

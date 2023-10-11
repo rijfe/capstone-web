@@ -2,25 +2,7 @@ import { styled } from "styled-components";
 import { useEffect, useState } from "react";
 import markersrc from "../Image/warning.png";
 
-function MapBox({ num1, num2 }) {
-  const [data, setData] = useState([]);
-  const getDriveData = async () => {
-    await fetch("/data/list", {
-      method: "GET",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((result) => {
-      result.json().then((response) => {
-        // console.log(response);
-        setData(response);
-        console.log(data);
-        setMap();
-      });
-    });
-  };
-
+function MapBox({ data, num1, num2 }) {
   const setMap = () => {
     const mapScript = document.createElement("script");
     mapScript.async = true;
@@ -68,7 +50,7 @@ function MapBox({ num1, num2 }) {
   };
 
   useEffect(() => {
-    getDriveData();
+    setMap();
     // const mapScript = document.createElement("script");
     // mapScript.async = true;
     // mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=f7d4ebdd98b5b81712647b8f4f71e07b&autoload=false`;
@@ -112,7 +94,7 @@ function MapBox({ num1, num2 }) {
     // mapScript.addEventListener("load", onLoadKakaoMap);
 
     // return () => mapScript.removeEventListener("load", onLoadKakaoMap);
-  }, [num1, num2]);
+  }, []);
   return <MapContainer id="kakaoMap"></MapContainer>;
 }
 

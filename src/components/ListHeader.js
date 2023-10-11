@@ -7,6 +7,9 @@ function ListHeader() {
         <ListTitleText>ID</ListTitleText>
       </ListTitleContainer>
       <ListTitleContainer>
+        <ListTitleText>등급</ListTitleText>
+      </ListTitleContainer>
+      <ListTitleContainer>
         <ListTitleText>Email</ListTitleText>
       </ListTitleContainer>
       <ListTitleContainer>
@@ -30,7 +33,7 @@ const ListHeaderContainer = styled.div`
 `;
 
 const ListTitleContainer = styled.div`
-  width: 25%;
+  width: 20%;
   height: 100%;
   display: flex;
   justify-content: center;
