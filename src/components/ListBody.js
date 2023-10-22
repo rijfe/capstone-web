@@ -4,14 +4,16 @@ function ListBody({ id, email, amount, time, rank }) {
   return (
     <ListBodyContainer
       onClick={() => {
-        console.log(`${email} is click`);
+        console.log(`${email} is clik`);
       }}
     >
       <ListContentContainer>
         <ListContentText>{id}</ListContentText>
       </ListContentContainer>
       <ListContentContainer>
-        <ListContentText style={{ color: rank === "초록" ? "green" : rank === "노랑" ? "gold" : "red" }}>{rank}</ListContentText>
+        <ListContentText style={{ color: rank === "초록" ? "green" : rank === "노랑" ? "gold" : "red" }}>
+          {rank === "초록" ? "안전" : rank === "노랑" ? "주의" : "위험"}
+        </ListContentText>
       </ListContentContainer>
       <ListContentContainer>
         <ListContentText>{email}</ListContentText>
