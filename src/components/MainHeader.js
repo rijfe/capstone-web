@@ -1,9 +1,11 @@
 import { styled } from "styled-components";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { bodyState } from "../store/bodyState";
+import { getUserName } from "../store/userName";
 
 function MainHeader({}) {
   const [body, setBody] = useRecoilState(bodyState);
+  const name = useRecoilValue(getUserName);
   const MapBtnClick = () => {
     setBody(true);
   };
@@ -23,7 +25,7 @@ function MainHeader({}) {
         <BtnText>명단</BtnText>
       </ListBtn>
       <UserTextContainer>
-        <UserText>홍길동님 환영합니다.</UserText>
+        <UserText>{name}님 환영합니다.</UserText>
       </UserTextContainer>
     </MainHeaderContainer>
   );
@@ -43,7 +45,7 @@ const MainHeaderContainer = styled.div`
 
 const HeaderTextContainer = styled.div`
   height: 100%;
-  width: 40rem;
+  width: 30rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,15 +68,13 @@ const MapBtn = styled.div`
   &:hover {
     border-bottom-width: 3px;
     border-bottom-style: solid;
+    font-weight: 900;
   }
 `;
 
 const BtnText = styled.h2`
   font-size: 3rem;
   font-weight: 500;
-  &:hover {
-    font-weight: 900;
-  }
 `;
 
 const ListBtn = styled.div`

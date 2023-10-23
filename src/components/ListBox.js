@@ -58,6 +58,7 @@ const ListContainer = styled.div`
   height: 110rem;
   border-radius: 0.6rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
 `;
 
 // const TestBtn = styled.div`
